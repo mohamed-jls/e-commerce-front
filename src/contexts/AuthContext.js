@@ -1,11 +1,14 @@
 import{ createContext, useState } from "react";
 import { auth } from "../api/AuthApi";
+import { useNavigate } from "react-router";
 
 
 const userContext = createContext();
 
 const AuthProvider=({children})=>{
-    const [user, setUser]=useState(null);
+
+    const nav = useNavigate()
+    const [user, setUser] = useState(null);
 
     const login=async(user)=>{
         const res  =await auth(user);
@@ -17,6 +20,7 @@ const AuthProvider=({children})=>{
 
     const logout = ()=>{
         setUser(null);
+        nav('/')
     }
 
     return (
