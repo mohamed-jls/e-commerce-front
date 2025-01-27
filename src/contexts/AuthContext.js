@@ -11,7 +11,7 @@ const AuthProvider=({children})=>{
     const [user, setUser] = useState(null);
 
     const login=async(user)=>{
-        const res  =await auth(user);
+        const res  = await auth(user);
         if(res.status===200){
             setUser(res.data);
         }

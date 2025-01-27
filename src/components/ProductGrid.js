@@ -5,11 +5,11 @@ import ProductGridItem from './ProductGridItem'
 
 const ProductGrid = () => {
 
-    const {products} = useContext(productsContext)
+    const { filteredProducts} = useContext(productsContext)
 
   return (
     <div style={styles.container}>
-        {products.map((prod, index) => <ProductGridItem prod={prod} key={index}/>)}
+        {filteredProducts.map((prod, index) => <ProductGridItem prod={prod} key={index}/>)}
     </div>
   )
 }

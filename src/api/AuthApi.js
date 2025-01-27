@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export const auth = async (userToLog) => {
     try {
-        const user = await axios.get(`${process.env.REACT_APP_API_URL}/users?email=${userToLog.email}&password=${userToLog.password}`)
+        const user = await axios.get(`${process.env.REACT_APP_API_URL}/users/auth?email=${userToLog.email}&password=${userToLog.password}`)
         if (user) {
             return user
         } else {
