@@ -1,16 +1,34 @@
-import React from 'react'
+import React, { use } from 'react'
+import AddToChart from './AddToChart'
+import { useEffect } from 'react'
+import { getProduct } from '../api/ProdApi'
+import { useState } from 'react'
 
 const ProductGridItem = ({ prod }) => {
+
+    const [product ,setProduct] = useState(prod)
+
+    useEffect(() => {
+        async function fetchProd(){
+            const res = await getProduct(prod)
+            setProduct(res)
+        }
+        if(typeof prod === 'string'){
+            fetchProd()
+        }
+    }, [])
+
     return (
         <div style={styles.container}>
             <div style={styles.imgContainer}> 
-                <img src={prod.imageUrl} alt={prod.name} style={styles.img} />
+                <img src={product.imageUrl} alt={product.name} style={styles.img} />
             </div>
-            <h3>{prod.name}</h3>
-            <p style={styles.p}>{prod.price}</p>
-            <p style={styles.desc}>{prod.description}</p>
-            <p style={styles.p}>{prod.category}</p>
-            <p style={prod.countInStock?styles.inStock: styles.outOfStock}>{prod.countInStock ? 'In Stock' : 'Out of Stock'}</p>
+            <h3>{product.name}</h3>
+            <p style={styles.p}>{product.price}</p>
+            <p style={styles.desc}>{product.description}</p>
+            <p style={styles.p}>{product.category}</p>
+            <p style={product.countInStock?styles.inStock: styles.outOfStock}>{product.countInStock ? 'In Stock' : 'Out of Stock'}</p>
+            {product.countInStock ? <AddToChart productId={product._id}/> : <button style={styles.btn}>unavailable</button> }
         </div>
     )
 }
@@ -49,6 +67,15 @@ const styles = {
     desc: {
         fontSize: '12px',
         color: 'gray'
+    },
+    btn: {
+        backgroundColor: 'gray',
+        color: 'white',
+        border: 'none',
+        padding: '5px 10px',
+        borderRadius: '5px',
+        cursor: 'pointer',
+        margin: '10px'
     }
 }
 

@@ -1,5 +1,4 @@
 import axios from 'axios'
-import exp from 'constants'
 
 export const getChart = async (chartId) => {
     const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/charts/${chartId}`)

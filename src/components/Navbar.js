@@ -16,7 +16,7 @@ const Navbar = () => {
             {user.user && <Link style={styles.link} to="/charts">Charts</Link>}
             {!user.user && <Link style={styles.link} to="/login">Login</Link>}
             {!user.user && <Link style={styles.link} to="/register">Register</Link>}
-            {user.user && <Link style={styles.link}>Logout</Link>}
+            {user.user && <Link style={styles.link} onClick={()=> user.logout()}>Logout</Link>}
             {user.user?.role === 'ADMIN' && <Link style={styles.link} to="/admin">Admin Panel</Link>}
         </div>
     );

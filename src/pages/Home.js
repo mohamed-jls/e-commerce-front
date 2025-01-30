@@ -9,7 +9,6 @@ const Home = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        console.log('fetching products');
         fetch(`${process.env.REACT_APP_API_URL}/products`)
             .then((res) => {
                 if (!res.ok) {

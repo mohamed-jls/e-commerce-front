@@ -20,7 +20,6 @@ const Login = () => {
             password: password.current.value
         }
         const res = await login(userToLog)
-        console.log(res)
         if(!res){
             setError(true)
             return

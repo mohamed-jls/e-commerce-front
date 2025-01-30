@@ -6,6 +6,11 @@ export const getProducts = async () => {
     return data
 }
 
+export const getProduct = async (id) => {
+    const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/products/${id}`)
+    return data
+}
+
 export const addProduct = async (product) => {
     const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/products`, product)
     return data

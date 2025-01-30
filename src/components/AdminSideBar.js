@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const AdminSideBar = ({active}) => {
   return (
     <div style={styles.container}>
-        {['users', 'products', 'charts'].map((link, index) => (
+        {['users', 'products'].map((link, index) => (
             <Link key={index} to={`/admin/${link}`} style={{...styles.link, ...(active === link ? styles.activeLink : {})}}>
                 {link}
             </Link>
